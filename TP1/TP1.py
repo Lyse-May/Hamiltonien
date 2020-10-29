@@ -7,4 +7,3 @@ Created on Thu Oct 29 13:35:38 2020
 """
 
 print("Hello")
-print("fyu)
