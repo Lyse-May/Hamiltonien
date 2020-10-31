@@ -4,6 +4,8 @@ Created on Sat Oct 31 16:30:54 2020
 
 @author: Capucine
 """
+import numpy as np
+from matplotlib import pyplot as plt
 
 """
 Lab 1 : 
@@ -21,4 +23,10 @@ consumption before T?
 
 r=0.05
 T=50
+n=100
+a= np.ones([n,n],None,'F')
+X = np.ones([n,n],None,'F')
+x0=0
 
+for i in range (0,n):
+    X += r*X(1-a)
