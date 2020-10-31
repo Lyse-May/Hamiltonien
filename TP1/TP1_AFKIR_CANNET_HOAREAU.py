@@ -21,12 +21,12 @@ consumption before T?
 
 "Question 1) Implement the bang-bang controller described in class using the programming language Python"
 
-r=0.05
-T=50
-n=100
-a= np.ones([n,n],None,'F')
-X = np.ones([n,n],None,'F')
-x0=0
+r = 0.05
+T = 50
 
-for i in range (0,n):
-    X += r*X(1-a)
+a = np.ones(T,None,'F')
+X = np.ones(T,None,'F')
+
+
+for i in range (0,T):
+    X[i] += r*X[i]*(1-a)
