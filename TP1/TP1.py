@@ -39,6 +39,7 @@ def plant():
     for i in range (1,T):
         X[i] = X[i-1] + r*X[i-1]*(1-A[i-1])
     return X
+X = plant()
 
 def optimize(A):
     S=0
@@ -73,8 +74,7 @@ rho, W = Bellman()
 def gamma():
     
     for i in range(1,T):
-        gama[i-1] =  (1+r) * rho[i] + (1+r*rho[i])*A_plant[i-1]
-    
+        gama[i-1] =  (1+r) * rho[i] + (1+r*rho[i])*A_plant[i-1]    
     return gama
 
 Y1 = (1 + rho)
@@ -84,7 +84,7 @@ G = gamma()
 
 plt.plot(rho,Y1,label = 'Y1')
 plt.plot(rho,Y2,label = 'Y2')
-#plt.plot(rho,G, label = 'G')
+plt.plot(rho,G, label = 'G')
 plt.legend()
 plt.show()
 
@@ -105,7 +105,7 @@ def optimize2(A):
 
 result2= minimize(optimize2,A,method='SLSQP',bounds=bounds)
 
-A_cons = result.x
+A_cons = result2.x
 A_cons[-1] = 1
 X_cons = consumption(A)[0]
 
