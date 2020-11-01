@@ -50,7 +50,8 @@ def Bellman():
         if r < 1/rho[i-1]:
             rho[i-2] = 1 + rho[i-1]
             A[i-2] = 0
-        rho[-1] = 1  
+        rho[-1] = 1 
+        
     X = plant(A)
     for i in range (0,T):
         W[i] = r * X[i] * rho[i]
@@ -60,7 +61,7 @@ def Bellman():
 rho,A,X,W = Bellman() 
 A[-1] = 1   
 gama = np.zeros((T,1))
-
+plt.plot(time,X)
 def gamma():
     for i in range(1,T):
         gama[i-1] =  (1+r) * rho[i] + (1+r*rho[i])*A[i-1] 
@@ -116,5 +117,3 @@ plt.show()
 "Question 5) Choose a couple of other strategies (controllers) to compare their respective total consumption to that obtained using the bang-bang approach."
 
 
-
-    
