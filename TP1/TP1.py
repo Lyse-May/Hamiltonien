@@ -67,6 +67,26 @@ def Bellman():
         W[i] = r * X[i] * rho[i]
     return rho, W
 
+gama = np.zeros((T,1))
+rho, W = Bellman()    
+
+def gamma():
+    
+    for i in range(1,T):
+        gama[i-1] =  (1+r) * rho[i] + (1+r*rho[i])*A_plant[i-1]
+    
+    return gama
+
+Y1 = (1 + rho)
+Y2 = (1 + r) * rho
+
+G = gamma()
+
+plt.plot(rho,Y1,label = 'Y1')
+plt.plot(rho,Y2,label = 'Y2')
+#plt.plot(rho,G, label = 'G')
+plt.legend()
+plt.show()
 
 
 "Question 2) Compute the corresponding total consumption and find the sequence of optimal actions."
@@ -102,23 +122,7 @@ def Bellman():
 #
 #plt.plot(time,A_cons)
 #plt.show()
-gama = np.zeros((T,1))
-rho, W = Bellman()    
 
-def gamma():
-    
-    for i in range(1,T):
-        gama[i-1] =  (1+r) * rho[i] + (1+r*rho[i])*A_plant[i-1]
-    
-    return gama
-Y1 = (1+rho)
-Y2 = (1 + r)*rho
-G = gamma()
-plt.plot(rho,Y1)
-plt.plot(rho,Y2)
-plt.plot(rho,G)
-plt.legend
-plt.show()
 
 "Question 5) Choose a couple of other strategies (controllers) to compare their respective total consumption to that obtained using the bang-bang approach."
 
