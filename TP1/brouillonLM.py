@@ -77,6 +77,8 @@ plt.ylabel("y")
 plt.xlabel("rho")
 plt.plot(rho,G, label = 'G')
 plt.legend()
+#plt.xlim(10,40)
+#plt.ylim(10,40)
 plt.show()
 
 
@@ -90,7 +92,8 @@ def consumption(A):
         S += X_cons[i-1]
     return X_cons,S
 
-X_cons = consumption(A)[0]
+X_cons,S = consumption(A)
+print("Total Consumption : ",S)
 
 
 "Question 3) Plot the consumption as a function of time."
