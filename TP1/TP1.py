@@ -35,13 +35,13 @@ time = np.array([i for i in range(0,T)])
 
 "Question 1) Implement the bang-bang controller described in class using the programming language Python"
 
-def plant():
+def plant(): #équation de Plant
     for i in range (1,T):
         X[i] = X[i-1] + r*X[i-1]*(1-A[i-1])
     return X
 X = plant()
 
-def optimize(A):
+def optimize(A): #optimisation de A
     S=0
     X = plant()
     for i in range(0,T):
@@ -49,11 +49,13 @@ def optimize(A):
     return -S
 
 bounds = [(0,1) for i in range(0,T)]
-result = minimize(optimize,A,method='SLSQP',bounds=bounds)
+result = minimize(optimize,A,method='SLSQP',bounds=bounds) #maximum avec A compris entre 0 et 1
 
 A_plant = result.x
 A_plant[-1] = 1
 X_plant = plant()
+
+#Equation de Belleman
 
 def Bellman():
     for i in range (T,0,-1):
@@ -84,6 +86,8 @@ G = gamma()
 
 plt.plot(rho,Y1,label = 'Y1')
 plt.plot(rho,Y2,label = 'Y2')
+plt.ylabel("y")
+plt.xlabel("rho")
 plt.plot(rho,G, label = 'G')
 plt.legend()
 plt.show()
@@ -114,6 +118,8 @@ X_cons = consumption(A)[0]
 "Question 3) Plot the consumption as a function of time."
 
 plt.plot(time,X_cons)
+plt.ylabel("Consommation")
+plt.xlabel("Time")
 plt.show()
 
 
@@ -121,6 +127,8 @@ plt.show()
 "Question 4) Plot the action sequence as a function of time."
 
 plt.plot(time,A_cons)
+plt.ylabel("Action")
+plt.xlabel("Time")
 plt.show()
 
 
