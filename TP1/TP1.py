@@ -61,7 +61,7 @@ def Bellman():
             
         if r < 1/rho[i-1]:
             rho[i-2] = 1 + rho[i-1]
-        rho[-1] = 1    
+        rho[-1] = 1  
     for i in range (0,T):
         W[i] = r * X[i] * rho[i]
     return rho, W
