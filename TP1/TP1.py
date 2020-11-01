@@ -91,37 +91,37 @@ plt.show()
 
 "Question 2) Compute the corresponding total consumption and find the sequence of optimal actions."
 
-#def consumption(A):
-#    X_cons = np.zeros((T,1))
-#    S=0
-#    for i in range (1,T+1):
-#        X_cons[i-1] = r*X_plant[i-1]*A[i-1]
-#        S += X_cons[i-1]
-#    return X_cons,S
-#
-#def optimize2(A):
-#    S = consumption(A)[1]
-#    return -S
-#
-#result2= minimize(optimize2,A,method='SLSQP',bounds=bounds)
-#
-#A_cons = result.x
-#A_cons[-1] = 1
-#X_cons = consumption(A)[0]
-#
-#
-#
-#"Question 3) Plot the consumption as a function of time."
-#
-#plt.plot(time,X_cons)
-#plt.show()
-#
-#
-#
-#"Question 4) Plot the action sequence as a function of time."
-#
-#plt.plot(time,A_cons)
-#plt.show()
+def consumption(A):
+    X_cons = np.zeros((T,1))
+    S=0
+    for i in range (1,T+1):
+        X_cons[i-1] = r*X_plant[i-1]*A[i-1]
+        S += X_cons[i-1]
+    return X_cons,S
+
+def optimize2(A):
+    S = consumption(A)[1]
+    return -S
+
+result2= minimize(optimize2,A,method='SLSQP',bounds=bounds)
+
+A_cons = result.x
+A_cons[-1] = 1
+X_cons = consumption(A)[0]
+
+
+
+"Question 3) Plot the consumption as a function of time."
+
+plt.plot(time,X_cons)
+plt.show()
+
+
+
+"Question 4) Plot the action sequence as a function of time."
+
+plt.plot(time,A_cons)
+plt.show()
 
 
 "Question 5) Choose a couple of other strategies (controllers) to compare their respective total consumption to that obtained using the bang-bang approach."
