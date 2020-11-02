@@ -46,10 +46,10 @@ def Bellman():
         
         if r >= 1/rho[i-1]:
             rho[i-2]=(1+r) * rho[i-1]
-            A[i-2] = 1
+            A[i-2] = 0
         if r < 1/rho[i-1]:
             rho[i-2] = 1 + rho[i-1]
-            A[i-2] = 0
+            A[i-2] = 1
         rho[-1] = 1 
         
     X = plant(A)
@@ -61,7 +61,7 @@ def Bellman():
 rho,A,X,W = Bellman() 
 A[-1] = 1   
 gama = np.zeros((T,1))
-plt.plot(time,X)
+#plt.plot(time,X)
 def gamma():
     for i in range(1,T):
         gama[i-1] =  (1+r) * rho[i] + (1+r*rho[i])*A[i-1] 
