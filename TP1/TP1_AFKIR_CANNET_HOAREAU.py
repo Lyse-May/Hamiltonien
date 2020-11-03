@@ -44,7 +44,7 @@ def plant(A):
 
 # Definition of rho, a, X and W by Bellman method
     
-def Bellman():
+def actions():
     for i in range (T,0,-1):
         
         if r >= 1/rho[i-1]:
@@ -54,15 +54,20 @@ def Bellman():
             rho[i-2] = 1 + rho[i-1]
             A[i-2] = 1
         rho[-1] = 1 
-        
-    X = plant(A)
+    return rho,A
+
+def Bellman(X,rho):        
+    
     for i in range (0,T):
         W[i] = r * X[i] * rho[i]
-    return rho,A,X,W
+    return W
 
 
-rho,A,X,W = Bellman() 
-A[-1] = 1   
+
+rho,A = actions()
+A[-1] = 1 
+X = plant(A)
+W = Bellman(X,rho)  
 
 
 # Display of results
@@ -86,6 +91,7 @@ plt.show()
 def consumption(A):
     X_cons = np.zeros((T,1))
     S=0
+    
     for i in range (1,T+1):
         X_cons[i-1] = r*X[i-1]*A[i-1]
         S += X_cons[i-1]
