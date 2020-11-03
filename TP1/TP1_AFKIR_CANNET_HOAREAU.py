@@ -143,18 +143,24 @@ X_cons1,S1 = consumption(A1,plant(A1))
 A2 = np.ones((T,1))
 X_cons2,S2 = consumption(A2,plant(A2))
 
-"A alternance"
+"ONLY 0"
 A3 = np.zeros((T,1))
-for i in range(0,T):
-    if i%2 == 1:
-        A3[i] = 1
 A3[-1] = 1 
 X_cons3,S3 = consumption(A3,plant(A3))
+
+"A alternance"
+A4 = np.zeros((T,1))
+for i in range(0,T):
+    if i%2 == 1:
+        A4[i] = 1
+A4[-1] = 1 
+X_cons4,S4 = consumption(A4,plant(A4))
 
 
 plt.plot(time,A1, label = "A croissant")
 plt.plot(time,A2, label = "Only 1")
-plt.plot(time,A3, label = "A décroissant")
+plt.plot(time,A3, label = "Only 0")
+plt.plot(time,A4, label = "A décroissant")
 
 plt.ylabel("Action")
 plt.xlabel("Time")
@@ -163,7 +169,8 @@ plt.show()
 
 plt.plot(time,X_cons1, label = "A croissant")
 plt.plot(time,X_cons2, label = "Only 1")
-plt.plot(time,X_cons3, label = "A alternance")
+plt.plot(time,X_cons3, label = "Only 0")
+plt.plot(time,X_cons4, label = "A alternance")
 
 plt.ylabel("Consommation")
 plt.xlabel("Time")
@@ -172,4 +179,5 @@ plt.show()
 
 print("Total Consumption with A croissant : ",S1)
 print("Total Consumption with only 1 : ",S2)
-print("Total Consumption with A alternance : ",S3)
+print("Total Consumption with only 0 : ",S3)
+print("Total Consumption with A alternance : ",S4)
