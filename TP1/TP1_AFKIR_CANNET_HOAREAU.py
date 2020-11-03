@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+Created on Tue Nov  3 20:24:41 2020
+
+@author: HOAREAU.LyseMay
+"""
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
 Created on Sat Oct 31 17:46:31 2020
 
 @author: HOAREAU.LyseMay
@@ -25,7 +33,7 @@ T = 50
 X = np.zeros((T,1))
 X[0] = 1000000
 
-A = np.arange(0,1,1/(T-1))
+A = np.zeros((T,1))
 
 W = np.zeros((T,1))
 rho = np.zeros((T,1))
@@ -44,25 +52,33 @@ def plant(A):
 
 # Definition of rho, a, X and W by Bellman method
     
-def actions():
+def rhos():
     for i in range (T,0,-1):
         
         if r >= 1/rho[i-1]:
             rho[i-2]=(1+r) * rho[i-1]
-            A[i-2] = 0
         if r < 1/rho[i-1]:
             rho[i-2] = 1 + rho[i-1]
-            A[i-2] = 1
         rho[-1] = 1 
-    return rho,A
+    return rho
+
+def actions():
+    for i in range (T,0,-1):
+        
+        if r >= 1/rho[i-1]:
+            A[i-2] = 0
+        if r < 1/rho[i-1]:
+            A[i-2] = 1
+
+    return A
 
 def Bellman(X,rho):        
     
     for i in range (0,T):
         W[i] = r * X[i] * rho[i]
     return W
-
-rho,A = actions()
+rho = rhos()
+A = actions()
 A[-1] = 1 
 X = plant(A)
 W = Bellman(X,rho)  
@@ -86,7 +102,7 @@ plt.show()
 
 "Question 2) Compute the corresponding total consumption and find the sequence of optimal actions."
 
-def consumption(A):
+def consumption(A,X):
     X_cons = np.zeros((T,1))
     S=0
     
@@ -95,7 +111,7 @@ def consumption(A):
         S += X_cons[i-1]
     return X_cons,S
 
-X_cons,S = consumption(A)
+X_cons,S = consumption(A,X)
 print("Total Consumption : ",S)
 
 
@@ -117,41 +133,43 @@ plt.show()
 
 
 "Question 5) Choose a couple of other strategies (controllers) to compare their respective total consumption to that obtained using the bang-bang approach."
+    
+"A croissant"
+A1 = np.arange(0,1,1/(T-1))
+A1[-1] = 1 
+X_cons1,S1 = consumption(A1,plant(A1))
 
-A1 = np.linspace(0,1,1/(T-1))
+"ONLY 1"
+A2 = np.ones((T,1))
+X_cons2,S2 = consumption(A2,plant(A2))
 
-W1 = np.zeros((T,1))
-rho1 = np.zeros((T,1))
-rho1[-1] = 1
-
-def Rhos():
-    for i in range (T,0,-1):
-        
-        if r >= 1/rho[i-1]:
-            rho[i-2]=(1+r) * rho[i-1]
-        if r < 1/rho[i-1]:
-            rho[i-2] = 1 + rho[i-1]
-        rho[-1] = 1 
-    return rho
-
-
-rho1 = Rhos()
-#A1[-1] = 1 
-X1 = plant(A1)
-W1 = Bellman(X1,rho1)
-
-X_cons1,S1 = consumption(A1)
-print("Total Consumption with an other couple of strategie : ",S1)
+"A alternance"
+A3 = np.zeros((T,1))
+for i in range(0,T):
+    if i%2 == 1:
+        A3[i] = 1
+A3[-1] = 1 
+X_cons3,S3 = consumption(A3,plant(A3))
 
 
-plt.plot(time,X_cons1)
-plt.ylabel("Consommation")
-plt.xlabel("Time")
-plt.show()
+plt.plot(time,A1, label = "A croissant")
+plt.plot(time,A2, label = "Only 1")
+plt.plot(time,A3, label = "A décroissant")
 
-
-
-plt.plot(time,A1)
 plt.ylabel("Action")
 plt.xlabel("Time")
+plt.legend()
 plt.show()
+
+plt.plot(time,X_cons1, label = "A croissant")
+plt.plot(time,X_cons2, label = "Only 1")
+plt.plot(time,X_cons3, label = "A alternance")
+
+plt.ylabel("Consommation")
+plt.xlabel("Time")
+plt.legend()
+plt.show()
+
+print("Total Consumption with A croissant : ",S1)
+print("Total Consumption with only 1 : ",S2)
+print("Total Consumption with A alternance : ",S3)
