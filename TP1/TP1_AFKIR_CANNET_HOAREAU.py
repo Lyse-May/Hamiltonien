@@ -118,4 +118,40 @@ plt.show()
 
 "Question 5) Choose a couple of other strategies (controllers) to compare their respective total consumption to that obtained using the bang-bang approach."
 
+A1 = np.linspace(0,1,1/(T-1))
 
+W1 = np.zeros((T,1))
+rho1 = np.zeros((T,1))
+rho1[-1] = 1
+
+def Rhos():
+    for i in range (T,0,-1):
+        
+        if r >= 1/rho[i-1]:
+            rho[i-2]=(1+r) * rho[i-1]
+        if r < 1/rho[i-1]:
+            rho[i-2] = 1 + rho[i-1]
+        rho[-1] = 1 
+    return rho
+
+
+rho1 = Rhos()
+A1[-1] = 1 
+X1 = plant(A1)
+W1 = Bellman(X1,rho1)
+
+X_cons1,S1 = consumption(A1)
+print("Total Consumption with an other couple of strategie : ",S1)
+
+
+plt.plot(time,X_cons1)
+plt.ylabel("Consommation")
+plt.xlabel("Time")
+plt.show()
+
+
+
+plt.plot(time,A1)
+plt.ylabel("Action")
+plt.xlabel("Time")
+plt.show()
