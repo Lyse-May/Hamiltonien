@@ -62,8 +62,6 @@ def Bellman(X,rho):
         W[i] = r * X[i] * rho[i]
     return W
 
-
-
 rho,A = actions()
 A[-1] = 1 
 X = plant(A)
