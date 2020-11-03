@@ -136,7 +136,7 @@ def Rhos():
 
 
 rho1 = Rhos()
-A1[-1] = 1 
+#A1[-1] = 1 
 X1 = plant(A1)
 W1 = Bellman(X1,rho1)
 
