@@ -70,6 +70,7 @@ def Bellman(X,rho):
     for i in range (0,T):
         W[i] = r * X[i] * rho[i]
     return W
+
 rho = rhos()
 A = actions()
 A[-1] = 1 
