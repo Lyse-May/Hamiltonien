@@ -31,7 +31,6 @@ A = np.zeros((T,1))
 
 W = np.zeros((T,1))
 rho = np.zeros((T,1))
-rho[-1] = 1 
 time = np.array([i for i in range(0,T)])
 
 
