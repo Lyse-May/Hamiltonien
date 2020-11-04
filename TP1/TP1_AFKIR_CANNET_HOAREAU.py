@@ -111,7 +111,7 @@ def consumption(A,X):
 
 X_cons,S = consumption(A,X)
 print("Total Consumption : ",S)
-print("A = ",A)
+print("A = ",A, "\n")
 
 
 "Question 3) Plot the consumption as a function of time."
@@ -123,7 +123,10 @@ plt.ylabel("Consumption")
 plt.xlabel("Time")
 plt.show()
 
-
+#To identify when savings stop and when consumption begins
+for i in range(26,32):
+    print("The consumption at T =",i, "is", X_cons[i])
+print("\n") 
 
 "Question 4) Plot the action sequence as a function of time."
 
