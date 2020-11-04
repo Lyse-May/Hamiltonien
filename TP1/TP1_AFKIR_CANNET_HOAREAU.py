@@ -7,6 +7,7 @@ Created on Sat Oct 31 17:46:31 2020
 """
 import numpy as np
 from matplotlib import pyplot as plt
+np.seterr(divide='ignore')
 
 """
 Group : AFKIR Sofia - CANNET Capucine - HOAREAU Lyse-May
@@ -98,7 +99,7 @@ plt.show()
 
 "Question 2) Compute the corresponding total consumption and find the sequence of optimal actions."
 
-print("Question 2")    
+print("Question 2\n")    
     
 def consumption(A,X):
     X_cons = np.zeros((T,1))
@@ -111,7 +112,11 @@ def consumption(A,X):
 
 X_cons,S = consumption(A,X)
 print("Total Consumption : ",S)
-print("A = ",A, "\n")
+
+print("The sequence of optimal actions : ")
+for i in range(0,T):
+    print("A at T =",i, "is", A[i])
+print("\n") 
 
 
 "Question 3) Plot the consumption as a function of time."
@@ -127,6 +132,7 @@ plt.show()
 for i in range(26,32):
     print("The consumption at T =",i, "is", X_cons[i])
 print("\n") 
+
 
 "Question 4) Plot the action sequence as a function of time."
 
