@@ -1,14 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Nov  3 20:24:41 2020
-
-@author: HOAREAU.LyseMay
-"""
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
 Created on Sat Oct 31 17:46:31 2020
 
 @author: HOAREAU.LyseMay
@@ -17,6 +9,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 """
+Group : AFKIR Sofia - CANNET Capucine - HOAREAU Lyse-May
+
 Lab 1 : 
     
 An investor has a fund. It has 1 million euros at time zero. It pays 5% interest per year for T=50
