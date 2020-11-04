@@ -172,8 +172,8 @@ X_cons4,S4 = consumption(A4,plant(A4))
 
 
 plt.plot(time,A1, label = "A increasing")
-plt.plot(time,A2, label = "Total consumption")
-plt.plot(time,A3, label = "Savings")
+plt.plot(time,A2, label = "A = 1")#total consumption
+plt.plot(time,A3, label = "A = 0")#savings
 plt.plot(time,A4, label = "A alternating")
 
 plt.ylabel("Action")
@@ -182,10 +182,10 @@ plt.legend()
 plt.title("Representation of Action with different values")
 plt.show()
 
-plt.plot(time,X_cons1, label = "with A increasing")
-plt.plot(time,X_cons2, label = "with only A = 1")
-plt.plot(time,X_cons3, label = "with only A = 0")
-plt.plot(time,X_cons4, label = "with A alternating")
+plt.plot(time,X_cons1, label = "A increasing")
+plt.plot(time,X_cons2, label = "A = 1")
+plt.plot(time,X_cons3, label = "A = 0")
+plt.plot(time,X_cons4, label = "A alternating")
 
 plt.ylabel("Consumption")
 plt.xlabel("Time")
@@ -194,6 +194,6 @@ plt.title("Representation of the Consumption with different values of A")
 plt.show()
 
 print("Total Consumption with A increasing : ",S1)
-print("Total Consumption with only 1 : ",S2)
-print("Total Consumption with only 0 : ",S3)
+print("Total Consumption with only 1 for A : ",S2)
+print("Total Consumption with only 0 for A : ",S3)
 print("Total Consumption with A alternating : ",S4)
