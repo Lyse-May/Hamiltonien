@@ -36,6 +36,8 @@ time = np.array([i for i in range(0,T)])
 
 "Question 1) Implement the bang-bang controller described in class using the programming language Python"
 
+print("Question 1")
+
 # Plant equation    
     
 def plant(A): 
@@ -96,6 +98,8 @@ plt.show()
 
 "Question 2) Compute the corresponding total consumption and find the sequence of optimal actions."
 
+print("Question 2")    
+    
 def consumption(A,X):
     X_cons = np.zeros((T,1))
     S=0
@@ -107,12 +111,15 @@ def consumption(A,X):
 
 X_cons,S = consumption(A,X)
 print("Total Consumption : ",S)
+print("A = ",A)
 
 
 "Question 3) Plot the consumption as a function of time."
 
+print("Question 3")    
+    
 plt.plot(time,X_cons)
-plt.ylabel("Consommation")
+plt.ylabel("Consumption")
 plt.xlabel("Time")
 plt.show()
 
@@ -120,6 +127,8 @@ plt.show()
 
 "Question 4) Plot the action sequence as a function of time."
 
+print("Question 4")    
+    
 plt.plot(time,A)
 plt.ylabel("Action")
 plt.xlabel("Time")
@@ -128,21 +137,23 @@ plt.show()
 
 "Question 5) Choose a couple of other strategies (controllers) to compare their respective total consumption to that obtained using the bang-bang approach."
     
-"A croissant"
+print("Question 5")    
+    
+"A increasing"
 A1 = np.arange(0,1,1/(T-1))
 A1[-1] = 1 
 X_cons1,S1 = consumption(A1,plant(A1))
 
-"ONLY 1"
+"ONLY 1"# total consumption
 A2 = np.ones((T,1))
 X_cons2,S2 = consumption(A2,plant(A2))
 
-"ONLY 0"
+"ONLY 0"#saving
 A3 = np.zeros((T,1))
 A3[-1] = 1 
 X_cons3,S3 = consumption(A3,plant(A3))
 
-"A alternance"
+"A alternating between 0 and 1"
 A4 = np.zeros((T,1))
 for i in range(0,T):
     if i%2 == 1:
@@ -151,27 +162,29 @@ A4[-1] = 1
 X_cons4,S4 = consumption(A4,plant(A4))
 
 
-plt.plot(time,A1, label = "A croissant")
-plt.plot(time,A2, label = "Only 1")
-plt.plot(time,A3, label = "Only 0")
-plt.plot(time,A4, label = "A décroissant")
+plt.plot(time,A1, label = "A increasing")
+plt.plot(time,A2, label = "Total consumption")
+plt.plot(time,A3, label = "Savings")
+plt.plot(time,A4, label = "A alternating")
 
 plt.ylabel("Action")
 plt.xlabel("Time")
 plt.legend()
+plt.title("Representation of Action with different values")
 plt.show()
 
-plt.plot(time,X_cons1, label = "A croissant")
-plt.plot(time,X_cons2, label = "Only 1")
-plt.plot(time,X_cons3, label = "Only 0")
-plt.plot(time,X_cons4, label = "A alternance")
+plt.plot(time,X_cons1, label = "with A increasing")
+plt.plot(time,X_cons2, label = "with only A = 1")
+plt.plot(time,X_cons3, label = "with only A = 0")
+plt.plot(time,X_cons4, label = "with A alternating")
 
-plt.ylabel("Consommation")
+plt.ylabel("Consumption")
 plt.xlabel("Time")
 plt.legend()
+plt.title("Representation of the Consumption with different values of A")
 plt.show()
 
-print("Total Consumption with A croissant : ",S1)
+print("Total Consumption with A increasing : ",S1)
 print("Total Consumption with only 1 : ",S2)
 print("Total Consumption with only 0 : ",S3)
-print("Total Consumption with A alternance : ",S4)
+print("Total Consumption with A alternating : ",S4)
