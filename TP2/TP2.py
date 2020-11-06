@@ -9,7 +9,7 @@ Created on Fri Nov  6 10:07:55 2020
 import numpy as np
 from matplotlib import pyplot as plt
 
-T = 50
+T = 500
 W = np.zeros((T,1))
 W_T = 0.998
 W[-1] = W_T
