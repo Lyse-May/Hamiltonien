@@ -19,6 +19,8 @@ time = np.array([i for i in range(0,T)])
 
 "Question 1"
 
+#Bellman equation
+
 def wealth():
     for i in range (T-1,0,-1):
         W[i-1] = ((1 + W[i]) / 2.)**2
