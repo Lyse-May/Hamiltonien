@@ -38,11 +38,17 @@ P = price(W)
 
 "Question 2"
 
-plt.plot(time,W, label = "W")
-plt.title("W ")
+plt.plot(time,W)
+plt.xlabel("t")
+plt.ylabel("W")
+plt.grid()
+plt.title("Optimal expected cumulative reward W")
 plt.show()
-plt.plot(time,P, label = "P")
-plt.title("P")
+plt.plot(time,P)
+plt.xlabel("t")
+plt.ylabel("P")
+plt.grid()
+plt.title("Price P")
 plt.show()
 
 "Question 3"
@@ -61,10 +67,16 @@ W1 = wealth_by_price(P1)
 #P1 = np.array([0.8 for i in range(0,T)])*P_real
 #W1 = wealth_by_price(P1)*P_real
 
-plt.plot(time,P1, label = "P = 0.8")
+plt.plot(time,P1)
+plt.xlabel("t")
+plt.ylabel("P")
+plt.grid()
 plt.title("P = 0.8")
 plt.show()
-plt.plot(time,W1, label = "W with P = 0.8")
+plt.plot(time,W1)
+plt.xlabel("t")
+plt.ylabel("W")
+plt.grid()
 plt.title("W with P = 0.8")
 plt.show()
 
@@ -76,10 +88,16 @@ W2 = wealth_by_price(P2)
 #P2 = np.arange(0,1,1/(T-1))*P_real
 #W2 = wealth_by_price(P2)*P_real
 
-plt.plot(time,P2, label = "P increasing")
+plt.plot(time,P2)
+plt.xlabel("t")
+plt.ylabel("P")
+plt.grid()
 plt.title("P increasing")
 plt.show()
-plt.plot(time,W2, label = "W with P increasing")
+plt.plot(time,W2)
+plt.xlabel("t")
+plt.ylabel("W")
+plt.grid()
 plt.title("W with P increasing")
 plt.show()
 
@@ -91,9 +109,15 @@ W3 = wealth_by_price(P3)
 #P3 = np.arange(1,0,-(1/(T)))*P_real
 #W3 = wealth_by_price(P3)*P_real
 
-plt.plot(time,P3, label = "P decreasing")
+plt.plot(time,P3)
+plt.xlabel("t")
+plt.ylabel("P")
+plt.grid()
 plt.title("P decreasing")
 plt.show()
-plt.plot(time,W3, label = "W with P decreasing")
+plt.plot(time,W3)
+plt.xlabel("t")
+plt.ylabel("W")
+plt.grid()
 plt.title("W with P decreasing")
 plt.show()
