@@ -64,11 +64,11 @@ W1 = wealth_by_price(P1)
 plt.plot(time,P1, label = "P = 0.8")
 plt.title("P = 0.8")
 plt.show()
-plt.plot(time,W1, label = "W pour P = 0.8")
-plt.title("W pour P = 0.8")
+plt.plot(time,W1, label = "W with P = 0.8")
+plt.title("W with P = 0.8")
 plt.show()
 
-"P croissant"
+"P increasing"
 
 P2 = np.arange(0,1,1/(T-1))
 W2 = wealth_by_price(P2)
@@ -76,14 +76,14 @@ W2 = wealth_by_price(P2)
 #P2 = np.arange(0,1,1/(T-1))*P_real
 #W2 = wealth_by_price(P2)*P_real
 
-plt.plot(time,P2, label = "P = croissant")
-plt.title("P = croissant")
+plt.plot(time,P2, label = "P increasing")
+plt.title("P increasing")
 plt.show()
-plt.plot(time,W2, label = "W pour P = croissant")
-plt.title("W pour P = croissant")
+plt.plot(time,W2, label = "W with P increasing")
+plt.title("W with P increasing")
 plt.show()
 
-"P décroissant"
+"P decreasing"
 
 P3 = np.arange(1,0,-(1/(T)))
 W3 = wealth_by_price(P3)
@@ -91,9 +91,9 @@ W3 = wealth_by_price(P3)
 #P3 = np.arange(1,0,-(1/(T)))*P_real
 #W3 = wealth_by_price(P3)*P_real
 
-plt.plot(time,P3, label = "P = décroissant")
-plt.title("P = décroissant")
+plt.plot(time,P3, label = "P decreasing")
+plt.title("P decreasing")
 plt.show()
-plt.plot(time,W3, label = "W pour P = décroissant")
-plt.title("W pour P = décroissant")
+plt.plot(time,W3, label = "W with P decreasing")
+plt.title("W with P decreasing")
 plt.show()
