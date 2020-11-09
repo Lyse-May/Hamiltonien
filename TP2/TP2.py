@@ -48,12 +48,14 @@ def price(W):
 
 W = wealth()
 P = price(W)
-# X = []
+#X = []
 
 # for i in range (1,T):
 #     vect_x[i] = plant(vect_x[i-1],P[i-1])
 #     if vect_x[i] == 0 :
 #        X.append(vect_x[i])
+
+# With a P_real
 
 #w = wealth()
 #W = wealth()*P_real
