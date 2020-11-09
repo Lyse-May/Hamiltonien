@@ -55,8 +55,9 @@ P = price(W)
 #     if vect_x[i] == 0 :
 #        X.append(vect_x[i])
 
+#w = wealth()
 #W = wealth()*P_real
-#P = price(W)*P_real
+#P = price(w)*P_real
 
 "Question 2"
 
