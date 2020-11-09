@@ -16,10 +16,24 @@ W[-1] = W_T
 P = np.zeros((T,1))
 P_real = 30000
 time = np.array([i for i in range(0,T)])
+#vect_x = np.zeros((T,1))
 
 "Question 1"
 
 #Bellman equation
+
+# def plant(x,p):
+#     Dp = max (0,1-p)
+#     if x == 0:
+#         x_state=0
+#     elif x == 1:
+#         unif_value = np.random.uniform(0,1,1)
+#         if unif_value <= Dp:
+#             x_state=0
+#         else :
+#             x_state=1
+            
+#     return x_state
 
 def wealth():
     for i in range (T-1,0,-1):
@@ -34,6 +48,12 @@ def price(W):
 
 W = wealth()
 P = price(W)
+# X = []
+
+# for i in range (1,T):
+#     vect_x[i] = plant(vect_x[i-1],P[i-1])
+#     if vect_x[i] == 0 :
+#        X.append(vect_x[i])
 
 #W = wealth()*P_real
 #P = price(W)*P_real
