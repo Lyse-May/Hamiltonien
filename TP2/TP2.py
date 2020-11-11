@@ -61,7 +61,7 @@ plt.show()
 
 def wealth_by_price(P):
     W = P**2 
-    #j'ai isolé C(t-s+1) dans l'eq de P(t-s) et l'ai remplacé dans l'eq de C(t-s)
+    #On isole C(t-s+1) dans l'equation de P(t-s) et on remplace dans l'equation de C(t-s)
     return W
 
 "P constant = 0.8"
