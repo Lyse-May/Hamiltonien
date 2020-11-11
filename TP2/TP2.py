@@ -16,7 +16,7 @@ W[-1] = W_T
 P = np.zeros((T,1))
 P_real = 30000
 time = np.array([i for i in range(0,T)])
-#vect_x = np.zeros((T,1))
+
 
 "Question 1"
 
