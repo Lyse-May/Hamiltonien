@@ -22,19 +22,6 @@ time = np.array([i for i in range(0,T)])
 
 #Bellman equation
 
-# def plant(x,p):
-#     Dp = max (0,1-p)
-#     if x == 0:
-#         x_state=0
-#     elif x == 1:
-#         unif_value = np.random.uniform(0,1,1)
-#         if unif_value <= Dp:
-#             x_state=0
-#         else :
-#             x_state=1
-            
-#     return x_state
-
 def wealth():
     for i in range (T-1,0,-1):
         W[i-1] = ((1 + W[i]) / 2.)**2
@@ -48,12 +35,6 @@ def price(W):
 
 W = wealth()
 P = price(W)
-#X = []
-
-# for i in range (1,T):
-#     vect_x[i] = plant(vect_x[i-1],P[i-1])
-#     if vect_x[i] == 0 :
-#        X.append(vect_x[i])
 
 # With a P_real
 
