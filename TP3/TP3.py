@@ -64,7 +64,7 @@ def reward(A,S,i):
         if A[i] == 1:
             R[j]= S[j] * NB_share    
         if A[j] == 0:
-            R[j]= 0
+            R[j]= 0 # on ne doit pas mettre une récompense négative ici (ex - 0,02) ?
     return R[i]
 
 
@@ -86,15 +86,27 @@ ptf = [ptfs(R,i) for i in range(0,n)]
 alpha = 0.4
 gamma = 0.9
 
-def Q_learnigDEMERDE(S,A):
+def Q_learningDEMERDE(S,A):
     Q = np.zeros((n,1))
     Q_prec = Q
-    for itera in range(10):        
+    for itera in range(10): 
+        next_action = int(np.random.choice(A,1))
         for i in range(0,n):
-            
+            Q[i+1] = (1-alpha)*Q[i]+alpha*(R[i+1]+gamma*max(Q)) #j'ai tenté, à en rediscuté
             break
 
+"""
 
+https://amunategui.github.io/reinforcement-learning/index.html
+
+http://emmanuel.adam.free.fr/site/IMG/pdf/iacollective_apprentissage.pdf p.17
+
+https://cdancette.fr/2017/08/18/reinforcement-learning-part1/
+
+J'ai cherché sur ces sites pour essayer de m'inspirer pour le Q-learning 
+mais ya des trucs que je comprends pas trop. Le deuxième lien donne un algorithme
+
+"""
 
 
 
