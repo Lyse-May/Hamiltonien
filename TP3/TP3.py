@@ -90,10 +90,30 @@ def Q_learningDEMERDE(S,A):
     Q = np.zeros((n,1))
     Q_prec = Q
     for itera in range(10): 
-        next_action = int(np.random.choice(A,1))
+        epsilon = 1
+        s = S[0]
         for i in range(0,n):
-            Q[i+1] = (1-alpha)*Q[i]+alpha*(R[i+1]+gamma*max(Q)) #j'ai tenté, à en rediscuté
-            break
+            s_curr = S[i]
+            nb  = np.random.random_integers(0,1)
+            if (nb< epsilon):
+                next_action = int(np.random.choice(A,1))
+                
+            else : 
+                next_action = np.argmax(Q[s_curr,next_action]) #on sait ce qu'il faut mettre à la place de next_action ici
+            s_next = S[i+1]
+            Q[i+1] = (1-alpha)*Q[i]+alpha*(R[i+1]+gamma*max(Q[i]))
+            alpha == 0.99 * alpha
+            epsilon == 0.99 * epsilon
+            
+            if (s_next == S[n-1]):
+                break
+    return Q_learningDEMERDE
+
+
+policy_star = np.argmax(Q_learningDEMERDE(close_train,A))
+
+
+"ALORS ON A TENTE DE FAIRE L ALGO DU DEUXIEME LIEN p17 ---> HELP"
 
 """
 
