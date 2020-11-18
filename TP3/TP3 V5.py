@@ -61,8 +61,8 @@ def reward(S,a,t):
     Nb = S[1]
     S = S[0]
     if (a == 1) & (Nb >= 30): #avoir le nombre d'action suffisant
-        if (S[t][-1] >= (np.mean(S[t]) * 0.99)): #vendre 
-            R = S[t][-1] * Nb_share
+        if (S[t][-1] >= (np.mean(S[t]) * 0.99)): #vendre si le prix est au dessus de la moyenne des 10 derniers prix
+            R = S[t][-1] * Nb_share 
             Cash+= R
             Nb -= Nb_share
         else:
@@ -71,7 +71,7 @@ def reward(S,a,t):
             Cash = Cash
     if (a == 2): 
         if (Cash >= S[t][-1] * Nb_share):
-            if (S[t][-1] <= (np.mean(S[t]) * 1.01)): #achat
+            if (S[t][-1] <= (np.mean(S[t]) * 1.01)): #achat si le prix est inférieur à la moyenne des 10 derniers prix
                 R = -S[t][-1] * Nb_share
                 Cash+= R
                 Nb += Nb_share
@@ -80,19 +80,19 @@ def reward(S,a,t):
                 Nb = Nb
                 Cash = Cash
             
-    if (a == 0):
+    if (a == 0): #ne fait rien
         R = 0
         Nb = Nb
         Cash = Cash
         
-    if (Nb == 0):
-        R = S[t][-1] * Nb_share
+    if (Nb == 0): # si pas d'action alors achat
+        R = -S[t][-1] * Nb_share
         Cash+= R
-        Nb -= Nb_share
+        Nb += Nb_share
         
     return R,Nb,Cash
 
-def portfolio(ptf_prec,S,a,t):
+def portfolio(ptf_prec,S,a,t): #prtefeuille à l'instant t
     R,Nb,Cash = reward(S,a,t)
     ptf = ptf_prec
     if t == 0:
@@ -105,13 +105,13 @@ def portfolio(ptf_prec,S,a,t):
 QUESTION 4
 """
 
-alpha = 0.3
-gamma = 0.9
+alpha = 0.4
+gamma = 0.7
 
-def maxi(cash_prec,S,t):
+def maxi(cash_prec,S,t): #calcul le max du portefeuille en fonction de l'action
     A = np.zeros((3,1))
     Nb = S[1]
-    if Nb == 0:
+    if Nb == 0: #si pas de share alors achat
         a = 2
         A[a] = portfolio(cash_prec,S,a,t)
     else:
@@ -119,7 +119,7 @@ def maxi(cash_prec,S,t):
             A[j] = portfolio(cash_prec,S,j,t)
         index = np.where(A == np.max(A))
         a = index[0][0] 
-    return A[a],a
+    return A[a],a # renvoie max + indice du max
 
 def Q_learning(data):
     Q = np.zeros((n-1,3))
@@ -132,7 +132,7 @@ def Q_learning(data):
             R,Nb,Cash = reward(S,a,t-1)
             Qmax = maxi(Cash,S,t)
             
-            for itera in range(0,10):
+            for itera in range(0,20):
                 Q[t-1,a] = (1 - alpha) * Q[t-1,a] + alpha * (R + gamma * Qmax[0])                
             
         R,Nb_new,Cash_new = reward(state(data,Nb,Cash),Qmax[1],t)
@@ -153,21 +153,10 @@ plt.plot(date_train,Cash, label = 'Cash')
 plt.legend()
 plt.show()
 
-action_opti = np.zeros((len(Q),1))
+action_opti = np.zeros((len(Q),1)) # optimisation des actions
 for i in range(0,len(Q)):
-    action_opti[i] = np.argmax(Q[i])
+    action_opti[i] = np.argmax(Q[i]) #policy
     
 plt.plot(date_train[:-1],action_opti)
 plt.legend()
 plt.show()    
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
