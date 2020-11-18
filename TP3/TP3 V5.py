@@ -32,11 +32,11 @@ close_train = data[0:NB_train,1]
 date_test = data[NB_train:len(data),0]
 close_test = data[NB_train:len(data),1]
 
-plt.plot(date_train,close_train, 'b', label = "Data train")
-plt.plot(date_test,close_test, 'r',label = "Data test")
+plt.plot(date_train,close_train,'b', label = "Data train")
+plt.plot(date_test,close_test,'r', label = "Data test")
+plt.legend()
 plt.xlabel("Date")
 plt.ylabel("Close")
-plt.legend
 plt.show()
 
 """
@@ -149,10 +149,14 @@ Q,Cash = Q_learning(close_train)
 plt.plot(date_train[:-1],Q[:,0], label = 'A = 0')
 plt.plot(date_train[:-1],Q[:,1], label = 'A = 1')
 plt.plot(date_train[:-1],Q[:,2], label = 'A = 2')
+plt.xlabel("Date")
+plt.ylabel("Cash")
 plt.legend()
 plt.show()
 
-plt.plot(date_train,Cash, label = 'Cash') 
+plt.plot(date_train,Cash) 
+plt.xlabel("Date")
+plt.ylabel("Cash")
 plt.legend()
 plt.show()
 
@@ -161,5 +165,7 @@ for i in range(0,len(Q)):
     action_opti[i] = np.argmax(Q[i]) #policythe sequence of policies that maximize the portfolio.
     
 plt.plot(date_train[:-1],action_opti)
+plt.xlabel("Date")
+plt.ylabel("Actions")
 plt.legend()
 plt.show()    
