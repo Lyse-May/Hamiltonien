@@ -111,7 +111,7 @@ QUESTION 4
 alpha = 0.4
 gamma = 0.7
 
-def maxi(cash_prec,S,t): #calculates the max of the portfolio according to the stock
+def maxi(cash_prec,S,t): #calculates the max of the portfolio according to the action
     A = np.zeros((3,1))
     Nb = S[1]
     if Nb == 0: #if there is no share then there is purchase
@@ -146,26 +146,29 @@ def Q_learning(data):
 
 Q,Cash = Q_learning(close_train)
 
-plt.plot(date_train[:-1],Q[:,0], label = 'A = 0')
-plt.plot(date_train[:-1],Q[:,1], label = 'A = 1')
-plt.plot(date_train[:-1],Q[:,2], label = 'A = 2')
+plt.plot(date_train[:-1],Q[:,0], label = 'A = 0 (nothing)')
+plt.plot(date_train[:-1],Q[:,1], label = 'A = 1 (sell)')
+plt.plot(date_train[:-1],Q[:,2], label = 'A = 2 (buy)')
 plt.xlabel("Date")
 plt.ylabel("Cash")
+plt.title("Representation of cash according to the value of A")
 plt.legend()
 plt.show()
 
 plt.plot(date_train,Cash) 
 plt.xlabel("Date")
 plt.ylabel("Cash")
+plt.title("Representation of cash with the best actions")
 plt.legend()
 plt.show()
 
 action_opti = np.zeros((len(Q),1)) # optimization of actions
 for i in range(0,len(Q)):
-    action_opti[i] = np.argmax(Q[i]) #policythe sequence of policies that maximize the portfolio.
+    action_opti[i] = np.argmax(Q[i]) #the sequence of policies that maximize the portfolio.
     
 plt.plot(date_train[:-1],action_opti)
 plt.xlabel("Date")
 plt.ylabel("Actions")
+plt.title("Sequence of policies that maximize the portfolio")
 plt.legend()
 plt.show()    
