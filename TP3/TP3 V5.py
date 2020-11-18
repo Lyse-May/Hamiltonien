@@ -24,7 +24,7 @@ data = data.to_numpy()
 QUESTION 2
 """
 
-NB_train = int(len(data)*0.75) #0.75 est le pourcentage de train dans data
+NB_train = int(len(data)*0.75) #0.75 is the percentage of train in data
 
 date_train = data[0:NB_train,0]
 close_train = data[0:NB_train,1]
@@ -32,20 +32,23 @@ close_train = data[0:NB_train,1]
 date_test = data[NB_train:len(data),0]
 close_test = data[NB_train:len(data),1]
 
-#plt.plot(date_train,close_train, 'b')
-#plt.plot(date_test,close_test, 'r')
-#plt.show()
+plt.plot(date_train,close_train, 'b', label = "Data train")
+plt.plot(date_test,close_test, 'r',label = "Data test")
+plt.xlabel("Date")
+plt.ylabel("Close")
+plt.legend
+plt.show()
 
 """
 QUESTION 3
 """
 
 n = len(date_train) 
-Nb_init = 0 #Nb share à l'état initial
-Nb_share = 30 #Nb share par transaction
+Nb_init = 0 #Nb share at the initial state
+Nb_share = 30 #Nb share per transaction
 Cash_init = 5000 
 
-def state(p,Nb,Cash): #Nb coorespond aux nombre d'action à l'état t
+def state(p,Nb,Cash): #Nb coorresponds to the number of actions at state t
     pas = 10
     Price = []
     for i in range(1,pas):
@@ -60,8 +63,8 @@ def reward(S,a,t):
     Cash = S[2]
     Nb = S[1]
     S = S[0]
-    if (a == 1) & (Nb >= 30): #avoir le nombre d'action suffisant
-        if (S[t][-1] >= (np.mean(S[t]) * 0.99)): #vendre si le prix est au dessus de la moyenne des 10 derniers prix
+    if (a == 1) & (Nb >= 30): # to have the sufficient number of actions
+        if (S[t][-1] >= (np.mean(S[t]) * 0.99)): # We sell if the price is above the average of the last 10 prices.
             R = S[t][-1] * Nb_share 
             Cash+= R
             Nb -= Nb_share
@@ -71,7 +74,7 @@ def reward(S,a,t):
             Cash = Cash
     if (a == 2): 
         if (Cash >= S[t][-1] * Nb_share):
-            if (S[t][-1] <= (np.mean(S[t]) * 1.01)): #achat si le prix est inférieur à la moyenne des 10 derniers prix
+            if (S[t][-1] <= (np.mean(S[t]) * 1.01)): # we buy if the price is lower than the average of the last 10 prices
                 R = -S[t][-1] * Nb_share
                 Cash+= R
                 Nb += Nb_share
@@ -80,19 +83,19 @@ def reward(S,a,t):
                 Nb = Nb
                 Cash = Cash
             
-    if (a == 0): #ne fait rien
+    if (a == 0): # if we do nothing
         R = 0
         Nb = Nb
         Cash = Cash
         
-    if (Nb == 0): # si pas d'action alors achat
+    if (Nb == 0): # if no action then there is a purchase
         R = -S[t][-1] * Nb_share
         Cash+= R
         Nb += Nb_share
         
     return R,Nb,Cash
 
-def portfolio(ptf_prec,S,a,t): #prtefeuille à l'instant t
+def portfolio(ptf_prec,S,a,t): # portfolio at time t
     R,Nb,Cash = reward(S,a,t)
     ptf = ptf_prec
     if t == 0:
@@ -108,10 +111,10 @@ QUESTION 4
 alpha = 0.4
 gamma = 0.7
 
-def maxi(cash_prec,S,t): #calcul le max du portefeuille en fonction de l'action
+def maxi(cash_prec,S,t): #calculates the max of the portfolio according to the stock
     A = np.zeros((3,1))
     Nb = S[1]
-    if Nb == 0: #si pas de share alors achat
+    if Nb == 0: #if there is no share then there is purchase
         a = 2
         A[a] = portfolio(cash_prec,S,a,t)
     else:
@@ -119,7 +122,7 @@ def maxi(cash_prec,S,t): #calcul le max du portefeuille en fonction de l'action
             A[j] = portfolio(cash_prec,S,j,t)
         index = np.where(A == np.max(A))
         a = index[0][0] 
-    return A[a],a # renvoie max + indice du max
+    return A[a],a # returns max + index of max
 
 def Q_learning(data):
     Q = np.zeros((n-1,3))
@@ -153,9 +156,9 @@ plt.plot(date_train,Cash, label = 'Cash')
 plt.legend()
 plt.show()
 
-action_opti = np.zeros((len(Q),1)) # optimisation des actions
+action_opti = np.zeros((len(Q),1)) # optimization of actions
 for i in range(0,len(Q)):
-    action_opti[i] = np.argmax(Q[i]) #policy
+    action_opti[i] = np.argmax(Q[i]) #policythe sequence of policies that maximize the portfolio.
     
 plt.plot(date_train[:-1],action_opti)
 plt.legend()
