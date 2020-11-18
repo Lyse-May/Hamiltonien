@@ -162,7 +162,7 @@ plt.title("Representation of cash with the best actions")
 plt.legend()
 plt.show()
 
-action_opti = np.zeros((len(Q),1)) # optimization of actions
+action_opti = np.zeros((len(Q),1)) 
 for i in range(0,len(Q)):
     action_opti[i] = np.argmax(Q[i]) #the sequence of policies that maximize the portfolio.
     
