@@ -48,7 +48,7 @@ Nb_init = 0 #Nb share at the initial state
 Nb_share = 30 #Nb share per transaction
 Cash_init = 5000 
 
-def state(p,Nb,Cash): #Nb coorresponds to the number of actions at state t
+def state(p,Nb,Cash):
     pas = 10
     Price = []
     for i in range(1,pas):
@@ -88,7 +88,7 @@ def reward(S,a,t):
         Nb = Nb
         Cash = Cash
         
-    if (Nb == 0): # if no action then there is a purchase
+    if (Nb == 0): # if no share then there is a purchase
         R = -S[t][-1] * Nb_share
         Cash+= R
         Nb += Nb_share
