@@ -24,15 +24,25 @@ print("Our parking : " ,parking_map(0.8,100)) # en paramètre le probabilité d'
 
 D = 0.9
 
-T = 50
+T = 100
 
-"Bof"
+"Bof, c'est pas terminé"
 
-for s in range (T,0,-1):
-    p = 0.8
+def parking_stategy (D,p,parking,n):
+    K = np.zeros(n)
+    M = np.zeros(n)
     q = 1-p
-    if (D*p+1)*(q**parking_map(0.8,100)[s]) >= 1:
-        break
+    K[0] = q*D
+    arret = 0
+    while arret == 0:
+        s = n-1
+        M[n-1] = s
+        K[s] = s - q/p + (D + 1/p)*(q**(s+1))
+        
+        if (D*p+1)*q**s >=1 :
+            break
+        
+    return M,K
         
         
     
