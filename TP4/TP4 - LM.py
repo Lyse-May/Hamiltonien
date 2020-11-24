@@ -9,30 +9,33 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 """
-Questio 1
+Question 1
 """
 
 state = [0,1] 
 # 1 place libre
 # 0 place occupée
 
-def parking_space(proba,Nb_position): #proba : proba de place libre
+def parking_space(proba,Nb_position): ## as a parameter the probability of having a free space and the number of spaces in the car park
     return (np.random.choice(state, Nb_position, p = [1-proba,proba]),proba)
 
-#Park1 = parking_space(0.1,10)
-#Park2 = parking_space(0.2,15)
-#Park3 = parking_space(0.3,20)
-#
-#print(Park1)
-#print(Park2)
-#print(Park3)
+#We generate several maps with different parking-space distributions
 
+Park1 = parking_space(0.1,10)
+Park2 = parking_space(0.2,15)
+Park3 = parking_space(0.3,20)
+Park4 = parking_space(0.8,20)
+
+print("Park1 with p = 0.1 and 10 parking spaces",Park1)
+print("\nPark2 with p = 0.2 and 15 parking spaces",Park2)
+print("\nPark3 with p = 0.3 and 20 parking spaces",Park3)
+print("\nPark4 with p = 0.8 and 20 parking spaces",Park4)
 
 """
 Question 2
 """
 
-def parking_strategy(park,D):
+def parking_strategy(park,D): # with D the cost of passing your destination without par
     Nb_position = len(park[0])
     p = park[1]
     q = 1-p
@@ -46,17 +49,22 @@ def parking_strategy(park,D):
             return park_car,s-1
             
 
-#Strategy1 = parking_strategy(Park1,100)
-#Strategy2 = parking_strategy(Park2,100)
-#Strategy3 = parking_strategy(Park3,1000)
-#
-#print(Strategy1)
-#print(Strategy2)
-#print(Strategy3)
+Strategy1 = parking_strategy(Park1,100)
+Strategy2 = parking_strategy(Park2,100)
+Strategy3 = parking_strategy(Park3,1000)
+Strategy4 = parking_strategy(Park4,1000)
+
+# We implement the strategy for the different parkings
+
+print("\nStategy n°1 with Park1",Strategy1)
+print("Stategy n°2 with Park2",Strategy2)
+print("Stategy n°3 with Park3",Strategy3)
+print("Stategy n°4 with Park4",Strategy4)
             
 """
 Question 3
 """
+# We define three functions to vary the cost D, the probability p and the number of position
 
 def variation_D(p,Nb_position,D_max):
     park = parking_space(p,Nb_position)
@@ -73,6 +81,9 @@ def variation_D(p,Nb_position,D_max):
                 if Strat[i] == 1:
                     count[d] += 1
     plt.plot(D,count)
+    plt.xlabel("D")
+    plt.ylabel("Count")
+    plt.title("Variation of D")
     plt.show()
     return count
     
@@ -92,6 +103,9 @@ def variation_p(Nb_position,Nb_proba,D):
                 if Strat[i] == 1:
                     count[p] += 1
     plt.plot(proba,count)
+    plt.xlabel("Probability p")
+    plt.ylabel("Count")
+    plt.title("Variation of p")
     plt.show()
     return count
 
@@ -111,6 +125,9 @@ def variation_Nb_position(Nb_position_max,p,D):
                 if Strat[i] == 1:
                     count[pos] += 1
     plt.plot(position,count)
+    plt.xlabel("Number of position")
+    plt.ylabel("Count")
+    plt.title("Variation of the number of position")
     #plt.plot(position,position)
     plt.show()
     return count
