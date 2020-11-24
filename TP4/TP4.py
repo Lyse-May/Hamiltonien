@@ -16,9 +16,12 @@ def parking_map(proba,nb_place):
     parking = np.random.choice(X,nb_place,p = [1-proba,proba])
     return(parking)
 
+#We generate several maps with different parking-space distributions
 
+print("Our parking with p = 0.8 and 50 parking spaces : " ,parking_map(0.8,50)) # as a parameter the probability of having a free space and the number of spaces in the car park
+print("\nOur parking with p = 0.3 and 50 parking spaces :  " ,parking_map(0.3,50))
+print("\nOur parking with p = 0.9 and 100 parking spaces : " ,parking_map(0.9,100)) # as a parameter the probability of having a free space and the number of spaces in the car park
 
-print("Our parking : " ,parking_map(0.8,100)) # en paramètre le probabilité d'avoir une place libre et le nombre de place dans le parking
 
 "Question 2"
 
@@ -40,7 +43,7 @@ def parking_stategy (D,p,parking,n):
         K[s] = s - q/p + (D + 1/p)*(q**(s+1))
         
         if (D*p+1)*q**s >=1 :
-            break
+            arret == 0.1
         
     return M,K
         
