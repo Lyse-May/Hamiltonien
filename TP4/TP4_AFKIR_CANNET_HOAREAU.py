@@ -16,7 +16,7 @@ state = [0,1]
 # 1 free place
 # 0 occupied space, we continue
 
-def parking_space(proba,Nb_position): ## as a parameter the probability of having a free space and the number of spaces in the car park
+def parking_space(proba,Nb_position): # as a parameter the probability of having a free space and the number of spaces in the car park
     return (np.random.choice(state, Nb_position, p = [1-proba,proba]),proba)
 
 # We generate several maps with different parking-space distributions
