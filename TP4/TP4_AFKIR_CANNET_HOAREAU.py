@@ -55,11 +55,22 @@ Strategy3 = parking_strategy(Park3,1000)
 Strategy4 = parking_strategy(Park4,1000)
 
 # We implement the strategy for the different parkings
-
-print("\nStrategy n°1 with Park1",Strategy1[0])
-print("Strategy n°2 with Park2",Strategy2[0])
-print("Strategy n°3 with Park3",Strategy3[0])
-print("Strategy n°4 with Park4",Strategy4[0])
+if Strategy1 != None:
+    print("\nStrategy n°1 with Park1",Strategy1[0])
+else:
+    print("La stratégie n'a pas fonctionné pour Park1")
+if Strategy2 != None:
+    print("Strategy n°2 with Park2",Strategy2[0])
+else:
+    print("La stratégie n'a pas fonctionné pour Park2")
+if Strategy3 != None:
+    print("Strategy n°3 with Park3",Strategy3[0])
+else:
+    print("La stratégie n'a pas fonctionné pour Park3")
+if Strategy4 != None:
+    print("Strategy n°4 with Park4",Strategy4[0])
+else:
+    print("La stratégie n'a pas fonctionné pour Park4")
             
 """
 Question 3
