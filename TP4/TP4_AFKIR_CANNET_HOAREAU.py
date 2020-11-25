@@ -56,10 +56,10 @@ Strategy4 = parking_strategy(Park4,1000)
 
 # We implement the strategy for the different parkings
 
-print("\nStategy n°1 with Park1",Strategy1[0])
-print("Stategy n°2 with Park2",Strategy2[0])
-print("Stategy n°3 with Park3",Strategy3[0])
-print("Stategy n°4 with Park4",Strategy4[0])
+print("\nStrategy n°1 with Park1",Strategy1[0])
+print("Strategy n°2 with Park2",Strategy2[0])
+print("Strategy n°3 with Park3",Strategy3[0])
+print("Strategy n°4 with Park4",Strategy4[0])
             
 """
 Question 3
