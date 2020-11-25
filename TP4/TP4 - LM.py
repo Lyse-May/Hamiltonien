@@ -13,13 +13,13 @@ Question 1
 """
 
 state = [0,1] 
-# 1 place libre
-# 0 place occupée
+# 1 free place
+# 0 occupied space, we continue
 
 def parking_space(proba,Nb_position): ## as a parameter the probability of having a free space and the number of spaces in the car park
     return (np.random.choice(state, Nb_position, p = [1-proba,proba]),proba)
 
-#We generate several maps with different parking-space distributions
+# We generate several maps with different parking-space distributions
 
 Park1 = parking_space(0.1,10)
 Park2 = parking_space(0.2,15)
@@ -56,10 +56,10 @@ Strategy4 = parking_strategy(Park4,1000)
 
 # We implement the strategy for the different parkings
 
-print("\nStategy n°1 with Park1",Strategy1)
-print("Stategy n°2 with Park2",Strategy2)
-print("Stategy n°3 with Park3",Strategy3)
-print("Stategy n°4 with Park4",Strategy4)
+print("\nStategy n°1 with Park1",Strategy1[0])
+print("Stategy n°2 with Park2",Strategy2[0])
+print("Stategy n°3 with Park3",Strategy3[0])
+print("Stategy n°4 with Park4",Strategy4[0])
             
 """
 Question 3
@@ -85,7 +85,8 @@ def variation_D(p,Nb_position,D_max):
     plt.ylabel("Count")
     plt.title("Variation of D")
     plt.show()
-    return count
+    return count # "count" represents the number of free spaces remaining, i.e. when the car has parked (stop condition).
+
     
 variation_D(0.1,50,500)
 
