@@ -129,7 +129,6 @@ def variation_Nb_position(Nb_position_max,p,D):
     plt.xlabel("Number of position")
     plt.ylabel("Count")
     plt.title("Variation of the number of position")
-    #plt.plot(position,position)
     plt.show()
     return count
 
